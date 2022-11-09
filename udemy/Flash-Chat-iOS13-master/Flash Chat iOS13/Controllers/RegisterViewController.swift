@@ -23,6 +23,10 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerPressed(_ sender: UIButton) {
+        tryRegister()
+    }
+    
+    func tryRegister() {
         
         if let email = emailTextfield.text, let password = passwordTextfield.text {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
@@ -34,19 +38,22 @@ class RegisterViewController: UIViewController {
                 }
             }
         }
+        
     }
     
 }
 
 extension RegisterViewController: UITextFieldDelegate {
     
-    // HABILITA O BOTAO DE RETORNO DO TECLADO PARA SAIR DA EDICAO DOS CAMPOS
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+            if textField == emailTextfield {
+                passwordTextfield.becomeFirstResponder()
+            } else {
+                tryRegister()
+            }
+        return false // We do not want UITextField to insert line-breaks.
     }
 
-    // HABILITA A SAIDA DE EDICAO DOS CAMPOS CLICANDO EM QUALQUER LUGAR DA VIEW
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

@@ -28,6 +28,8 @@ class ChatViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        
+        // Used instead of touchesBegan textfieldDelegate method because the tableview absorbs the click outside the textfield as a scrolling gesture, leading touchesBegan not to work
         tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
         
         messageTextfield.delegate = self
@@ -61,10 +63,6 @@ class ChatViewController: UIViewController {
                                 let lastMessageIndex = self.messages.count - 1
                                 let indexPath = IndexPath(row: lastMessageIndex, section: 0)
                                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                                
-
-                                
-                                
                             }
                         }
                     }
@@ -74,6 +72,10 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
+        sendMessage()
+    }
+    
+    func sendMessage() {
         
         if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
             db.collection(K.FStore.collectionName).addDocument(data: [
@@ -85,7 +87,7 @@ class ChatViewController: UIViewController {
                     print("There was an issue savind data to Firestore, \(e)")
                 } else {
                     print("Successfully saved data on Firestore.")
-                    
+
                     DispatchQueue.main.async {
                         self.messageTextfield.text = ""
                     }
@@ -105,9 +107,14 @@ class ChatViewController: UIViewController {
         }
     }
     
+    @objc func hideKeyboard() {
+        messageTextfield.resignFirstResponder()
+     }
+    
 }
 
 extension ChatViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
@@ -136,23 +143,14 @@ extension ChatViewController: UITableViewDataSource {
         
         return cell
     }
+    
 }
 
 extension ChatViewController: UITextFieldDelegate {
     
-    // HABILITA O BOTAO DE RETORNO DO TECLADO PARA SAIR DA EDICAO DOS CAMPOS
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        sendMessage()
         return true
     }
-
-    // HABILITA A SAIDA DE EDICAO DOS CAMPOS CLICANDO EM QUALQUER LUGAR DA VIEW
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
-    @objc func hideKeyboard() {
-        messageTextfield.resignFirstResponder()
-     }
 
 }

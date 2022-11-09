@@ -23,6 +23,11 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginPressed(_ sender: UIButton) {
+        tryAuthenticate()
+    }
+    
+    func tryAuthenticate() {
+        
         if let email = emailTextfield.text, let password = passwordTextfield.text {
             Auth.auth().signIn(withEmail: email, password: password) { authDataResutl, error in
                 if let e = error {
@@ -33,19 +38,22 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+        
     }
     
 }
 
 extension LoginViewController: UITextFieldDelegate {
     
-    // HABILITA O BOTAO DE RETORNO DO TECLADO PARA SAIR DA EDICAO DOS CAMPOS
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+            if textField == emailTextfield {
+                passwordTextfield.becomeFirstResponder()
+            } else {
+                tryAuthenticate()
+            }
+        return false // We do not want UITextField to insert line-breaks.
     }
 
-    // HABILITA A SAIDA DE EDICAO DOS CAMPOS CLICANDO EM QUALQUER LUGAR DA VIEW
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

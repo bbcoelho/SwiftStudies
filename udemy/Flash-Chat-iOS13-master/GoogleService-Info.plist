@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>981875596572-ncq1gvcq31c6h5a6nc6khrcodh19gmc0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.981875596572-ncq1gvcq31c6h5a6nc6khrcodh19gmc0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA_-ch1o6U2gbExGpZz7uMJgimaSz9uClA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>981875596572</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>bbcoelho-com.github</string>
+	<key>PROJECT_ID</key>
+	<string>flash-chat-ios13-ac0eb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flash-chat-ios13-ac0eb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:981875596572:ios:2d709d7cd83ed0ec892ed9</string>
+</dict>
+</plist>

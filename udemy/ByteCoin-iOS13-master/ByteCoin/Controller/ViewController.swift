@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
-        coinManager.delegate = self
+//        coinManager.delegate = self
         
     }
 }
@@ -44,22 +44,31 @@ extension ViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         let selectedCurrency = CoinModel.currencyArray[row]
-        coinManager.getCoinRate(for: selectedCurrency)
+        
+        Task {
+            do {
+                bitcoinLabel.text = try await coinManager.getCoinRate(for: selectedCurrency)
+                currencyLabel.text = selectedCurrency
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 
-extension ViewController: CoinManagerDelegate {
-    
-    func didUpdateRate(_ coinManager: CoinManager, rate: CoinModel, currency: String) {
-        DispatchQueue.main.async {
-            self.bitcoinLabel.text = rate.rateString
-            self.currencyLabel.text = currency
-        }
-    }
-    
-    func didFailWithError(_ coinManager: CoinManager, error: Error) {
-        print(error)
-    }
-    
-}
+//extension ViewController: CoinManagerDelegate {
+//    
+//    func didUpdateRate(_ coinManager: CoinManager, rate: CoinModel, currency: String) {
+//        DispatchQueue.main.async {
+//            self.bitcoinLabel.text = rate.rateString
+//            self.currencyLabel.text = currency
+//        }
+//    }
+//    
+//    func didFailWithError(_ coinManager: CoinManager, error: Error) {
+//        print(error)
+//    }
+//    
+//}

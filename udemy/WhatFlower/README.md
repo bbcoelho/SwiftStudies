@@ -1,10 +1,11 @@
 #  WhatFlower? 🌼
 
-### This app is originaly from The App Brewery iOS Bootcamp at ûdemy with a lot of modifications I did by myself:
+### This app is originally from The App Brewery iOS Bootcamp at ûdemy, with some modifications I did by myself:
 
-* A view programmatically create (ViewCode) instead of using Storyboard
-* A new AI model created from Oxford 102 Flowers dataset using CreateML (since I couldn't convert the available Caffe model using CoreML Tools as the lecture suggested)
-* And out of curiosity I've added one more class to the model (one more flower it can now recognize) calling it 103 Flowers 😉
+* A view programmatically created (ViewCode) instead of using Storyboard
+* A new AI model created from Oxford 102 Flowers dataset using CreateML (since I couldn't achieve converting the available Caffe model using CoreML Tools as the lecture suggested)
+* And out of curiosity I've added one more class to the model (one more flower it can now recognize) calling it now 103 Flowers 😉
+* A different (but still simple) design
 
 
 ## How does it works?
@@ -14,7 +15,7 @@
 
 * Uses the AI model to recognize the flower's "specie"
 * Makes a query on Wikipedia's API searching for the description and image of the identified flower
-* Updetes the UI with the information from Wikipedia
+* Updates the UI with the information and image from Wikipedia
 
 
 ## More datails:
@@ -22,4 +23,4 @@
 * Framework: UIKit
 * iOS Target: +13.0
 * Architecture: MVC
-* Third Party Libraries: Alamofire (but today I would use URLSession with async/await istead), SwiftyJSON, SDWebImage)
+* Third Party Libraries: Alamofire (although I'd rather use URLSession with async/await), SwiftyJSON, SDWebImage)

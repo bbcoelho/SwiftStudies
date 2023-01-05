@@ -9,13 +9,23 @@ import UIKit
 
 class MainView: UIView {
     
+    lazy var backgroundImage: UIImageView = {
+       
+        let image = UIImageView()
+        
+        image.image = UIImage(named: "backgroud")
+        image.contentMode = .scaleAspectFill
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        return image
+    }()
+    
     lazy var flowerImage: UIImageView = {
         
         let image = UIImageView()
         
-        image.backgroundColor = .systemGreen
-        image.tintColor = .white
-        image.image = UIImage(systemName: "arrow.up.forward")
+        image.tintColor = .label
+        image.image = UIImage(systemName: "line.diagonal.arrow")
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
         
@@ -30,6 +40,7 @@ class MainView: UIView {
         label.textAlignment = .justified
         label.font = .systemFont(ofSize: 25, weight: .medium)
         label.text = "CLICK ON CAMERA ICON AND TAKE A PHOTO OF YOUR FLOWER FOR SEARCH!"
+        label.textColor = .label
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -49,6 +60,14 @@ class MainView: UIView {
     }
     
     private func addSubviews() {
+        
+        addSubview(backgroundImage)
+        NSLayoutConstraint.activate([
+            backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
         
         addSubview(flowerImage)
         NSLayoutConstraint.activate([

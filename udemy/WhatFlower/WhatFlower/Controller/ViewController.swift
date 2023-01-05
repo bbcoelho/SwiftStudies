@@ -36,7 +36,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .camera, target: self, action: #selector(self.cameraTapped))
-        navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.rightBarButtonItem?.tintColor = .label
     }
 
     @objc func cameraTapped() {

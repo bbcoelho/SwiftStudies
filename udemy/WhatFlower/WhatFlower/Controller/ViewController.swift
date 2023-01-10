@@ -60,10 +60,11 @@ extension ViewController: UIImagePickerControllerDelegate {
 
             navigationItem.title = flowerLabel
             
+            mainView.flowerImage.isHidden = true
+            mainView.flowerDescription.isHidden = true
+            
             dataServices.fetchData()
         }
-        
-        mainView.flowerDescription.text = ""
         
         imagePicker.dismiss(animated: true, completion: nil)
     }
@@ -75,6 +76,9 @@ extension ViewController: DataServicesDelegate {
         
         mainView.flowerDescription.text = flowerDescription
         mainView.flowerImage.sd_setImage(with: URL(string: flowerImageURL))
+        
+        mainView.flowerImage.isHidden = false
+        mainView.flowerDescription.isHidden = false
     }
     
     func didFailWithError(_ dataServices: DataServices, error: Error) {
